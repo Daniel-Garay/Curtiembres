@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Inicio de sesión</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <link href="Template/assets/css/index.css" rel="stylesheet"></link>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"/>
+        <link href="https://fonts.googleapis.com/css?family=Exo" rel="stylesheet"></link>
+    </h:head>
+    <h:body>
+        <div class="col-md-8 offset-md-2" style="margin-top:105px;">
+            <div class="card mb-3">
+                <h4 class="display-4" style="text-align:center; margin:34px 25px 30px 25px;">Registrarse</h4>
+                <div class="card-body">
+                    <h:form>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputName">Nombres</label>
+                                <h:inputText class="form-control" id="inputName" html5:placeholder="Nombres"/>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputApellido">Apellidos</label>
+                                <h:inputText class="form-control" id="inputApellido" html5:placeholder="Apellidos"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail4">Correo electrónico</label>
+                            <h:inputText class="form-control" id="inputEmail4" html5:placeholder="Correo electrónico"/>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword">Contraseña</label>
+                                <h:inputSecret class="form-control" id="inputPassword" html5:placeholder="Contraseña"/>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Confirmar contraseña</label>
+                                <h:inputSecret class="form-control" id="inputPassword4" html5:placeholder="Confirmar contraseña"/>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputCity">Ciudad</label>
+                                <h:inputText class="form-control" id="inputCity" html5:placeholder="Ciudad"/>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputTelefono">Teléfono</label>
+                                <h:inputText class="form-control" id="inputTelefono" html5:placeholder="Teléfono"/>
+                            </div>
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
+                            <label class="form-check-label" for="exampleCheck1">Acepto políticas y privacidad</label>
+                        </div>
+                        <h:commandButton value="Enviar" class="btn btn-primary"></h:commandButton>
+                    </h:form>  
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    </h:body>
+
+</html>
+
