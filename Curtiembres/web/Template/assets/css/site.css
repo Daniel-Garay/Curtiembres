@@ -53,3 +53,15 @@ a{
     border-color: #BB6A26;
     
 }
+
+/*Footer fijo*/
+#rowFooter {
+    display:block; 
+    bottom:0px; 
+    position:fixed; 
+    background-color:white; 
+    width:101%; 
+    margin-bottom: 7px; 
+    color: #3E2412 !important;
+    font-family: 'Exo', sans-serif !important;
+}
