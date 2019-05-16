@@ -12,9 +12,9 @@ public class ManejoArchivos {
     File archivo = null;
     FileReader fr = null;
     BufferedReader br = null;
-    Usuario usuarioEncontro ;
+    Usuario usuarioEncontro;
 
-    public Usuario VerificaUsuario(String nombre,String contrasena) {
+    public Usuario VerificaUsuario(String nombre, String contrasena) {
         try {
             archivo = new File("C:/Users/xcbdgara/Documents/NetBeansProjects/CurtiembresBogota/Curtiembres/Curtiembres/Archivos/Usuario.txt");
             fr = new FileReader(archivo);
@@ -25,11 +25,8 @@ public class ManejoArchivos {
                 String[] lineaArreglo;
                 lineaArreglo = linea.split(";");
 
-                if ((lineaArreglo[1] == nombre) && (lineaArreglo[3] == contrasena)) {  // Existe el usuario
-                    usuarioEncontro.setId(Integer.parseInt(lineaArreglo[0]));
-                    usuarioEncontro.setNombre(lineaArreglo[1]);
-                    usuarioEncontro.setApellido(lineaArreglo[2]);
-                    usuarioEncontro.setContrasena(lineaArreglo[3]);
+                if ((lineaArreglo[1].equals(nombre)) && (lineaArreglo[3].equals(contrasena))) {  // Existe el usuario
+                    usuarioEncontro = new Usuario(Integer.parseInt(lineaArreglo[0]), lineaArreglo[1], lineaArreglo[2], "", lineaArreglo[3]);
                 }
             }
             return usuarioEncontro;
