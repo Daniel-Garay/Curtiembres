@@ -23,9 +23,11 @@
 
         <!-- Nav de Inicio de sesión y registro -->
         <ul class="nav justify-content-end" style="padding:10px;">
-            <li class="nav-item">
-                <a class="nav-link" href="registroUsuario.xhtml?faces-redirect = true">Registrarse</a>
-            </li>
+             <h:form>
+                <li class="nav-item" style="padding: 7px;">
+                    <h:commandLink action="#{navigationRequest.moverPagRegistroUsuario()}" value="Registrar"></h:commandLink>
+                </li>
+            </h:form>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="modal" data-target="#exampleModal"  href="#">Iniciar sesión</a>
             </li>
@@ -37,7 +39,7 @@
                 <img src="img/logo_cafe.png" style="padding-top: 16px;margin: auto;display: block; height: 103px; width: 200px;"></img>
             </div>
             <ul class="nav justify-content-center">
-                <li class="nav-item">
+                 <li class="nav-item">
                     <a class="nav-link" href="index.xhtml">Inicio</a>
                 </li>
                 <li class="nav-item">

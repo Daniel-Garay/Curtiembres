@@ -18,16 +18,17 @@
     <h:body>
 
         <ul class="nav justify-content-end" style="padding: 10px;">
-            <li class="nav-item">
-                <a class="nav-link active" href="registroUsuario.xhtml?faces-redirect = true">Registrarse</a>
-            </li>
+            <h:form>
+                <li class="nav-item" style="padding: 7px;">
+                    <h:commandLink action="#{navigationRequest.moverPagRegistroUsuario()}" value="Registrar"></h:commandLink>
+                </li>
+            </h:form>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="modal" data-target="#exampleModal" href="#">Iniciar sesión</a>
             </li>
         </ul>
 
         <div class="container-fluid">
-
             <!-- Modal para iniciar sesión -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -88,9 +89,12 @@
                             <a class="dropdown-item" href="#">Separated link</a>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="nosotros.xhtml">Nosotros</a>
-                    </li>
+                    <h:form>
+                        <li class="nav-item">
+                            <h:commandLink action="#{navigationRequest.moverPagNosotros()}" value="Nosotros"></h:commandLink>
+                        </li>
+                    </h:form>
+
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contáctanos</a>
                     </li>
@@ -174,15 +178,21 @@
                     <div class="col-md-3 offset-md-2">
                         <h5>Nosotros</h5>
                         <ul style="padding-left: 0px">
-                            <li style="list-style: none; padding-top: 10px">
-                                <a href="nosotros.xhtml#quienesSomos">Quienes somos</a>
-                            </li>
-                            <li style="list-style: none; padding-top: 7px">
-                                <a href="nosotros.xhtml#mision">Misión</a>
-                            </li>
-                            <li style="list-style: none; padding-top: 7px">
-                                <a href="nosotros.xhtml#vision">Visión</a>
-                            </li>
+                            <h:form>
+                                <li style="list-style: none; padding-top: 10px">
+                                    <h:commandLink action="#{navigationRequest.moverPagNosotros()}" value="Quienes somos"></h:commandLink>
+                                </li>
+                            </h:form>
+                            <h:form>
+                                <li style="list-style: none; padding-top: 7px">
+                                    <h:commandLink action="#{navigationRequest.moverPagNosotros()}" value="Misión"></h:commandLink>
+                                </li>
+                            </h:form>
+                            <h:form>
+                                <li style="list-style: none; padding-top: 7px">
+                                    <h:commandLink action="#{navigationRequest.moverPagNosotros()}" value="Visión"></h:commandLink>
+                                </li>
+                            </h:form>
                         </ul>
                     </div>
                     <div class="col-md-3">
