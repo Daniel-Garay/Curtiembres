@@ -1,0 +1,74 @@
+/*Menú de navegación horizontal*/
+.justify-content-center {
+  margin-top: 35px !important;  
+  border-bottom: 2px solid;
+  border-color: #BB6A26;
+}
+
+/*Color de los párrafos y títulos*/
+a, p, h1, h3, h4, h5, input, label, span {
+    color: #3E2412 !important;
+    font-family: 'Exo', sans-serif !important;
+}
+
+i{
+ color: #3E2412 !important;   
+}
+
+a{
+    text-decoration: none !important;
+}
+
+/*Estilo para todos los botones*/
+.btn-primary, .btn-secondary {
+    background-color: white !important;
+    border-color: #BB6A26 !important;
+    color: #884B16 !important;
+    
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+    background-color: #884B16 !important;
+    border-color: #BB6A26 !important;
+    color: #FFF5B9 !important;
+    
+}
+
+/*Modal*/
+.modal {
+    background-color: rgba(62, 36 ,18, 0.7);
+    
+}
+
+/*Formularios*/
+.form-control{
+    border-color: #BB6A26!important;
+    
+}
+
+/*Footer de la página web*/
+.footer{
+    background-color: #FFF5B9;
+    border-top:2px solid;
+    border-color: #BB6A26;
+    
+}
+
+/*Footer fijo*/
+#rowFooter {
+    display:block; 
+    bottom:0px; 
+    position:fixed; 
+    background-color:white; 
+    width:101%; 
+    margin-bottom: 7px; 
+    color: #3E2412 !important;
+    font-family: 'Exo', sans-serif !important;
+}
+
+/*Content
+.avatar {
+    width: 124px;
+    height: 124px; 
+    position: relative;
+}*/
