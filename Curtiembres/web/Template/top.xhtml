@@ -4,20 +4,39 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <ui:component>
-        <ul class="nav justify-content-end">
+        <!-- Nav de Inicio de sesión y registro -->
+        <ul class="nav justify-content-end" style="padding:10px;">
             <li class="nav-item">
-                <a class="nav-link active" href="#">Active</a>
+                <a class="nav-link" href="registroUsuario.xhtml?faces-redirect = true">Registrarse</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                <a class="nav-link" data-toggle="modal" data-target="#exampleModal"  href="#">Iniciar sesión</a>
             </li>
         </ul>
+
+        <!-- Menú horizontal con logo -->
+        <div class="container">
+            <div class="row">
+                <img src="../img/logo_cafe.png" style="padding-top: 16px;margin: auto;display: block; height: 103px; width: 200px;"></img>
+            </div>
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.xhtml">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Serivicios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Nosotros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contáctanos</a>
+                </li>
+            </ul>
+        </div>
 
     </ui:component>
 </html>

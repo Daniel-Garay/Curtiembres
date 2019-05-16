@@ -4,8 +4,12 @@ a, p, h1, h3, h4, h5, input, label, span {
     color: #3E2412 !important;
     font-family: 'Exo', sans-serif !important;
 }
+
 i{
  color: #3E2412 !important;   
+}
+a{
+    text-decoration: none !important;
 }
 
 .btn-primary, .btn-secondary {

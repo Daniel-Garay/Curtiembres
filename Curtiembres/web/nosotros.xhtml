@@ -13,6 +13,13 @@
         <link href="https://fonts.googleapis.com/css?family=Exo" rel="stylesheet"></link>
     </h:head>
     <h:body>
+        <style>
+            p {
+                margin-top: 25px;
+                text-align: justify;
+                line-height: 25px;
+            }
+        </style>
 
         <!-- Nav de Inicio de sesión y registro -->
         <ul class="nav justify-content-end" style="padding:10px;">
@@ -23,15 +30,15 @@
                 <a class="nav-link" data-toggle="modal" data-target="#exampleModal"  href="#">Iniciar sesión</a>
             </li>
         </ul>
-        
+
         <!-- Menú horizontal con logo -->
         <div class="container">
             <div class="row">
-                <img src="img/logo_cafe.png" style="padding-top: 22px;margin: auto;display: block; height: 103px; width: 187px;"></img>
+                <img src="img/logo_cafe.png" style="padding-top: 16px;margin: auto;display: block; height: 103px; width: 200px;"></img>
             </div>
             <ul class="nav justify-content-center">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Inicio</a>
+                    <a class="nav-link" href="index.xhtml">Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Productos</a>
@@ -50,14 +57,14 @@
 
 
         <!-- Contenido -->
-        <div class="container" style="margin-top: 55px; margin-bottom: 55px;">
+        <div class="container" style="margin-top: 65px; margin-bottom: 55px;">
             <div class="row">
                 <div class="col-md-4">
                     <img src="img/cuero_nueve.jpg" style="width:145%;" />
                 </div>
                 <div class="col-md-6 offset-md-2">
-                    <h6 class="display-4">San Benito, Bogotá D.C.</h6>
-                    <h3>Quienes somos</h3>
+                    <h6 class="display-4" style="font-size: 13px;">San Benito, Bogotá D.C.</h6>
+                    <h3 style="margin-top: 25px;" id="quienesSomos" name="quienesSomos">Quienes somos</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
@@ -65,15 +72,15 @@
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="margin-top: 55px;">
                 <div class="col-md-5">
                     <div class="row">
-                        <h3>Misión</h3>
+                        <h3 id="mision" name="mision" >Misión</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
                     </div>
                     <div class="row">
-                        <h3>Visión</h3>
+                        <h3 id="vision" name="vision">Visión</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
                     </div>
@@ -90,14 +97,14 @@
                 <div class="col-md-3 offset-md-2">
                     <h5>Nosotros</h5>
                     <ul style="padding-left: 0px">
-                        <li style="list-style: none; padding-top: 10px">
-                            <a>Quienes somos</a>
+                        <li style="list-style: none; padding-top: 10px;">
+                            <a href="#quienesSomos">Quienes somos</a>
                         </li>
-                        <li style="list-style: none; padding-top: 7px">
-                            <a>Misión</a>
+                        <li style="list-style: none; padding-top: 7px; text-decoration: none;">
+                            <a href="#mision">Misión</a>
                         </li>
-                        <li style="list-style: none; padding-top: 7px">
-                            <a>Visión</a>
+                        <li style="list-style: none; padding-top: 7px; text-decoration: none;">
+                            <a href="#vision">Visión</a>
                         </li>
                     </ul>
                 </div>
@@ -107,10 +114,10 @@
                         <li style="list-style: none; padding-top: 10px;">
                             <i class="fab fa-facebook-f"></i><a style="padding-left: 10px;">Curtiembres Bogotá</a>
                         </li>
-                        <li style="list-style: none; padding-top: 7px">
+                        <li style="list-style: none; padding-top: 7px;">
                             <i class="fab fa-instagram"></i><a style="padding-left: 10px;">@curtiembre_b</a>
                         </li>
-                        <li style="list-style: none; padding-top: 7px">
+                        <li style="list-style: none; padding-top: 7px;">
                             <i class="far fa-envelope"></i><a style="padding-left: 10px;">curtiembres_bta@gmail.com</a>
                         </li>
                     </ul>
