@@ -19,12 +19,8 @@ public class ManejoArchivos {
 
     public Usuario VerificaUsuario(String nombre, String contrasena) {
         try {
-            
-            URL getLocation = ManejoArchivos.class.getProtectionDomain().getCodeSource().getLocation();
-            String getPath = getLocation.getPath();
-            String getPathReplace = getPath.replace("/build/web/WEB-INF/classes/edu/curtiembres/modelo/ManejoArchivos.class", "");
-            archivo = new File(getPathReplace + "/Archivos/Usuario.txt");
-            
+
+            lectorUrlArchivo();
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
 
@@ -50,6 +46,14 @@ public class ManejoArchivos {
                 e2.printStackTrace();
             }
         }
+    }
+
+    public void lectorUrlArchivo() {
+        URL getLocation = ManejoArchivos.class.getProtectionDomain().getCodeSource().getLocation();
+        String getPath = getLocation.getPath();
+        String getPathReplace = getPath.replace("/build/web/WEB-INF/classes/edu/curtiembres/modelo/ManejoArchivos.class", "");
+        archivo = new File(getPathReplace + "/Archivos/Usuario.txt");
+        
     }
 
     public List<Permisos> VerificarPermiso(String rol) {
