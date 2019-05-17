@@ -3,6 +3,8 @@ package edu.curtiembres.modelo;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ManejoArchivos {
 
@@ -16,7 +18,7 @@ public class ManejoArchivos {
 
     public Usuario VerificaUsuario(String nombre, String contrasena) {
         try {
-            archivo = new File("C:/Users/xcbdgara/Documents/NetBeansProjects/CurtiembresBogota/Curtiembres/Curtiembres/Archivos/Usuario.txt");
+            archivo = new File("C:/Users/Daniel/Documents/NetBeansProjects/Curtiembres/Curtiembres/Archivos/Usuario.txt");
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
 
@@ -25,14 +27,59 @@ public class ManejoArchivos {
                 String[] lineaArreglo;
                 lineaArreglo = linea.split(";");
 
-                if ((lineaArreglo[1].equals(nombre)) && (lineaArreglo[3].equals(contrasena))) {  // Existe el usuario
-                    usuarioEncontro = new Usuario(Integer.parseInt(lineaArreglo[0]), lineaArreglo[1], lineaArreglo[2], "", lineaArreglo[3]);
+                if ((lineaArreglo[1].equals(nombre)) && (lineaArreglo[4].equals(contrasena))) {  // Existe el usuario
+                    usuarioEncontro = new Usuario(Integer.parseInt(lineaArreglo[0]), lineaArreglo[1], lineaArreglo[2], "", lineaArreglo[3], lineaArreglo[4], lineaArreglo[5]);
                 }
             }
             return usuarioEncontro;
         } catch (Exception e) {
             e.printStackTrace();
             return usuarioEncontro;
+        } finally {
+            try {
+                if (null != fr) {
+                    fr.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+    }
+
+    public List<Permisos> VerificarPermiso(String rol) {
+
+        List<Permisos> lstPermisoEncontrado = new ArrayList<>(); 
+
+        try {
+
+            String ruta = "";
+
+            switch (rol) {
+                case "Administrador":
+                    ruta = "C:/Users/Daniel/Documents/NetBeansProjects/Curtiembres/Curtiembres/Archivos/AdminPermisos.txt";
+                    break;
+                case "Cliente":
+                    ruta = "C:/Users/Daniel/Documents/NetBeansProjects/Curtiembres/Curtiembres/Archivos/ClientePermisos.txt";
+                    break;
+            }
+
+            archivo = new File(ruta);
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
+
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] lineaArreglo;
+                lineaArreglo = linea.split(";");
+
+                Permisos objPermiso = new Permisos(lineaArreglo[0], lineaArreglo[1]);
+                lstPermisoEncontrado.add(objPermiso);
+
+            }
+            return lstPermisoEncontrado;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return lstPermisoEncontrado;
         } finally {
             try {
                 if (null != fr) {

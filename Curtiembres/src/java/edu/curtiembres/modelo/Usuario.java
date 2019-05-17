@@ -6,17 +6,21 @@ public class Usuario {
     private String Nombre;
     private String Apellido;
     private String Correo;
+    private String Rol;
     private String Contrasena;
+    private String UrlImagen;
 
     public Usuario() {
     }
 
-    public Usuario(int id, String Nombre, String Apellido, String Correo, String Contrasena) {
+    public Usuario(int id, String Nombre, String Apellido, String Correo, String Rol, String Contrasena, String UrlImagen) {
         this.id = id;
         this.Nombre = Nombre;
         this.Apellido = Apellido;
         this.Correo = Correo;
+        this.Rol = Rol;
         this.Contrasena = Contrasena;
+        this.UrlImagen = UrlImagen;
     }
 
     public String getContrasena() {
@@ -59,4 +63,21 @@ public class Usuario {
         this.id = id;
     }
 
+    public String getRol() {
+        return Rol;
+    }
+
+    public void setRol(String Rol) {
+        this.Rol = Rol;
+    }
+
+    public String getUrlImagen() {
+        return UrlImagen;
+    }
+
+    public void setUrlImagen(String UrlImagen) {
+        this.UrlImagen = UrlImagen;
+    }
+
+    
 }
