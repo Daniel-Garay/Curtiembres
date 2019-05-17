@@ -9,11 +9,12 @@ public class Usuario {
     private String Rol;
     private String Contrasena;
     private String UrlImagen;
+    private boolean lsAuthenticated;
 
     public Usuario() {
     }
 
-    public Usuario(int id, String Nombre, String Apellido, String Correo, String Rol, String Contrasena, String UrlImagen) {
+    public Usuario(int id, String Nombre, String Apellido, String Correo, String Rol, String Contrasena, String UrlImagen, boolean lsAuthenticated) {
         this.id = id;
         this.Nombre = Nombre;
         this.Apellido = Apellido;
@@ -21,8 +22,10 @@ public class Usuario {
         this.Rol = Rol;
         this.Contrasena = Contrasena;
         this.UrlImagen = UrlImagen;
+        this.lsAuthenticated = lsAuthenticated;
     }
 
+    
     public String getContrasena() {
         return Contrasena;
     }
@@ -77,6 +80,14 @@ public class Usuario {
 
     public void setUrlImagen(String UrlImagen) {
         this.UrlImagen = UrlImagen;
+    }
+
+    public boolean isLsAuthenticated() {
+        return lsAuthenticated;
+    }
+
+    public void setLsAuthenticated(boolean lsAuthenticated) {
+        this.lsAuthenticated = lsAuthenticated;
     }
 
     

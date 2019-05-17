@@ -25,9 +25,10 @@
         <!-- Nav de Inicio de sesión y registro -->
         <ul class="nav justify-content-end" style="padding:10px;">
             <h:form>
-                 <li class="nav-item" style="padding: 7px;">
-                     <h:commandLink class="nav-link" value="${usuarioSesion.objUsuario.nombre}"></h:commandLink>
-                     <h:graphicImage value="${usuarioSesion.objUsuario.urlImagen}"></h:graphicImage>
+                <li class="nav-item" style="padding: 7px;">
+                    <h:commandLink class="nav-link" value="${usuarioSesion.objUsuario.nombre}"></h:commandLink>
+                    <h:graphicImage value="${usuarioSesion.objUsuario.urlImagen}"></h:graphicImage>
+
                 </li>
             </h:form>
             <h:form>
@@ -39,127 +40,141 @@
                 <a class="nav-link" data-toggle="modal" data-target="#exampleModal"  href="#">Iniciar sesión</a>
             </li>
         </ul>
+        <c:choose>
+            <c:when test="${usuarioSesion.objUsuario.lsAuthenticated == true}">
+                <label>Autenticado</label> 
+            </c:when>
+            <c:when test="${usuarioSesion.objUsuario.lsAuthenticated != true}">
+                <label>No Autenticado</label> 
+            </c:when>
+            </c:choose>
+            <!--<c:if test="${usuarioSesion.objUsuario.lsAuthenticated == true}">
+                <label>Autenticado</label> 
+            </c:if>
+            <c:if test="${usuarioSesion.objUsuario.lsAuthenticated != true}">
+                <label>No Autenticado</label> 
+            </c:if> -->
 
-        <!-- Menú horizontal con logo -->
-        <div class="container">
-            <div class="row">
-                <img src="img/logo_cafe.png" style="padding-top: 16px;margin: auto;display: block; height: 103px; width: 200px;"></img>
+            <!-- Menú horizontal con logo -->
+            <div class="container">
+                <div class="row">
+                    <img src="img/logo_cafe.png" style="padding-top: 16px;margin: auto;display: block; height: 103px; width: 200px;"></img>
+                </div>
+
+                <ul class="nav justify-content-center">
+                    <c:forEach var="permiso" items="#{usuarioSesion.lstPermiso}">
+                        <!--   <li class="nav-item">
+                               <a class="nav-link" href="index.xhtml">Inicio</a>
+                           </li>-->
+
+                        <c:if test="${permiso.id == 'Productos'}">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Productos</a>
+                            </li>
+                        </c:if>
+
+                        <c:if test="${permiso.id == 'Servicios'}">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Servicios</a>
+                            </li>
+                        </c:if>
+
+                        <!--<li class="nav-item">
+                          <a class="nav-link" href="#">Nosotros</a>
+                      </li> -->
+
+                        <c:if test="${permiso.id == 'Contactanos'}">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Contáctanos</a>
+                            </li>
+                        </c:if>
+                    </c:forEach>
+
+                </ul>
             </div>
 
-            <ul class="nav justify-content-center">
-                <c:forEach var="permiso" items="#{usuarioSesion.lstPermiso}">
-                 <!--   <li class="nav-item">
-                        <a class="nav-link" href="index.xhtml">Inicio</a>
-                    </li>-->
 
-                    <c:if test="${permiso.id == 'Productos'}">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Productos</a>
-                        </li>
-                    </c:if>
-
-                    <c:if test="${permiso.id == 'Servicios'}">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Servicios</a>
-                        </li>
-                    </c:if>
-
-                      <!--<li class="nav-item">
-                        <a class="nav-link" href="#">Nosotros</a>
-                    </li> -->
-
-                    <c:if test="${permiso.id == 'Contactanos'}">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contáctanos</a>
-                        </li>
-                    </c:if>
-                </c:forEach>
-
-            </ul>
-        </div>
-
-
-        <!-- Contenido -->
-        <div class="container" style="margin-top: 65px; margin-bottom: 55px;">
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="img/cuero_nueve.jpg" style="width:145%;" />
-                </div>
-                <div class="col-md-6 offset-md-2">
-                    <h6 class="display-4" style="font-size: 13px;">San Benito, Bogotá D.C.</h6>
-                    <h3 style="margin-top: 25px;" id="quienesSomos" name="quienesSomos">Quienes somos</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                </div>
-            </div>
-            <div class="row" style="margin-top: 55px;">
-                <div class="col-md-5">
-                    <div class="row">
-                        <h3 id="mision" name="mision" >Misión</h3>
+            <!-- Contenido -->
+            <div class="container" style="margin-top: 65px; margin-bottom: 55px;">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="img/cuero_nueve.jpg" style="width:145%;" />
+                    </div>
+                    <div class="col-md-6 offset-md-2">
+                        <h6 class="display-4" style="font-size: 13px;">San Benito, Bogotá D.C.</h6>
+                        <h3 style="margin-top: 25px;" id="quienesSomos" name="quienesSomos">Quienes somos</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
                     </div>
-                    <div class="row">
-                        <h3 id="vision" name="vision">Visión</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                </div>
+                <div class="row" style="margin-top: 55px;">
+                    <div class="col-md-5">
+                        <div class="row">
+                            <h3 id="mision" name="mision" >Misión</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                        </div>
+                        <div class="row">
+                            <h3 id="vision" name="vision">Visión</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-5 offset-md-1">
+                        <img src="img/cuero_ocho.jpg" style="width:127%;"/>
                     </div>
                 </div>
-                <div class="col-md-5 offset-md-1">
-                    <img src="img/cuero_ocho.jpg" style="width:127%;"/>
-                </div>
             </div>
-        </div>
 
 
-        <!-- Footer -->
-        <footer class="footer mt-auto py-3">
-            <div class="row" style="margin:15px 0px 15px 0px;">
-                <div class="col-md-3 offset-md-2">
-                    <h5>Nosotros</h5>
-                    <ul style="padding-left: 0px">
-                        <li style="list-style: none; padding-top: 10px;">
-                            <a href="#quienesSomos">Quienes somos</a>
-                        </li>
-                        <li style="list-style: none; padding-top: 7px; text-decoration: none;">
-                            <a href="#mision">Misión</a>
-                        </li>
-                        <li style="list-style: none; padding-top: 7px; text-decoration: none;">
-                            <a href="#vision">Visión</a>
-                        </li>
-                    </ul>
+            <!-- Footer -->
+            <footer class="footer mt-auto py-3">
+                <div class="row" style="margin:15px 0px 15px 0px;">
+                    <div class="col-md-3 offset-md-2">
+                        <h5>Nosotros</h5>
+                        <ul style="padding-left: 0px">
+                            <li style="list-style: none; padding-top: 10px;">
+                                <a href="#quienesSomos">Quienes somos</a>
+                            </li>
+                            <li style="list-style: none; padding-top: 7px; text-decoration: none;">
+                                <a href="#mision">Misión</a>
+                            </li>
+                            <li style="list-style: none; padding-top: 7px; text-decoration: none;">
+                                <a href="#vision">Visión</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Contáctanos</h5>
+                        <ul style="padding-left: 0px !important; ">
+                            <li style="list-style: none; padding-top: 10px;">
+                                <i class="fab fa-facebook-f"></i><a style="padding-left: 10px;">Curtiembres Bogotá</a>
+                            </li>
+                            <li style="list-style: none; padding-top: 7px;">
+                                <i class="fab fa-instagram"></i><a style="padding-left: 10px;">@curtiembre_b</a>
+                            </li>
+                            <li style="list-style: none; padding-top: 7px;">
+                                <i class="far fa-envelope"></i><a style="padding-left: 10px;">curtiembres_bta@gmail.com</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Ubicación</h5>
+                        <img src="img/map.png" style="width:54%;"/>
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    <h5>Contáctanos</h5>
-                    <ul style="padding-left: 0px !important; ">
-                        <li style="list-style: none; padding-top: 10px;">
-                            <i class="fab fa-facebook-f"></i><a style="padding-left: 10px;">Curtiembres Bogotá</a>
-                        </li>
-                        <li style="list-style: none; padding-top: 7px;">
-                            <i class="fab fa-instagram"></i><a style="padding-left: 10px;">@curtiembre_b</a>
-                        </li>
-                        <li style="list-style: none; padding-top: 7px;">
-                            <i class="far fa-envelope"></i><a style="padding-left: 10px;">curtiembres_bta@gmail.com</a>
-                        </li>
-                    </ul>
+                <div class="row" style="display:block;bottom:0px; position:fixed; background-color:white; width:101%; ">
+                    <span class="text-muted" style="margin-left:1073px; ">Curtiembres Bogotá,Tannery © 2019</span>
                 </div>
-                <div class="col-md-3">
-                    <h5>Ubicación</h5>
-                    <img src="img/map.png" style="width:54%;"/>
-                </div>
-            </div>
-            <div class="row" style="display:block;bottom:0px; position:fixed; background-color:white; width:101%; ">
-                <span class="text-muted" style="margin-left:1073px; ">Curtiembres Bogotá,Tannery © 2019</span>
-            </div>
-        </footer>
+            </footer>
 
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     </h:body>
 </html>
