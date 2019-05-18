@@ -100,19 +100,24 @@
                     <!--   <li class="nav-item">
                            <a class="nav-link" href="index.xhtml">Inicio</a>
                        </li>-->
+                    <h:form>
+                        <c:if test="${permiso.id == 'Productos'}">
+                            <li class="nav-item" style="padding-right: 19px;">
+                                <a class="nav-link" href="#"><h:commandLink action="#{navegacionRequest.moverGrillaProductos()}" value="Productos"></h:commandLink></a>
+                            </li>
 
-                    <c:if test="${permiso.id == 'Productos'}">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Productos</a>
-                        </li>
-                    </c:if>
-
-                    <c:if test="${permiso.id == 'Servicios'}">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Servicios</a>
-                        </li>
-                    </c:if>
-
+                        </c:if>
+                        <c:if test="${permiso.id == 'Servicios'}">
+                            <li class="nav-item" style="padding-right: 19px;">
+                                <a class="nav-link" href="#"><h:commandLink action="#{navegacionRequest.moverGrillaProductos()}" value="Servicios"></h:commandLink></a>
+                            </li>
+                        </c:if>
+                        <c:if test="${permiso.id == 'Inventario'}">
+                            <li class="nav-item" style="padding-right: 19px;">
+                                <a class="nav-link" href="#"><h:commandLink action="#{navegacionRequest.moverGrillaInventario()}" value="Inventario"></h:commandLink></a>
+                            </li>
+                        </c:if>
+                    </h:form>
                     <!--<li class="nav-item">
                       <a class="nav-link" href="#">Nosotros</a>
                   </li> -->
@@ -129,6 +134,7 @@
 
 
         <!-- Contenido -->
+        
         <div class="container" style="margin-top: 65px; margin-bottom: 55px;">
             <!-- Texto sobre la empresa -->
             <h1 class="display-4" style="text-align: center;padding: 30px 26px 48px 26px; ">Bienvenido a Curtiembres Bogotá</h1>

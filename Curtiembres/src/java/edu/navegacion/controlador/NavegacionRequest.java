@@ -23,4 +23,12 @@ public class NavegacionRequest {
     public String moverPagRegistroUsuario() {
         return "registroUsuario.xhtml" + redireccionTrue;
     }
+    
+    public String moverGrillaProductos(){
+    return "Productos/ProductoG.xhtml" + redireccionTrue;
+    }
+    
+    public String moverGrillaInventario(){
+    return "Inventario/inventario.xhtml" + redireccionTrue;
+    }
 }

@@ -72,3 +72,7 @@ a{
     height: 124px; 
     position: relative;
 }*/
+
+.breadcrumb {
+    background-color: white !important;
+}
