@@ -26,22 +26,6 @@ public class UsuarioSesion implements Serializable {
         
     }
     
-    public String VerificarUsuario() {
-        objUsuario = objArchivos.VerificaUsuario(nombre, contrasena);
-        if (objUsuario == null) // No encontro el usuario
-        {
-            return "";
-        } else // Si encontro el usuario
-        {
-            lstPermiso = objArchivos.VerificarPermiso(objUsuario.getRol());
-            return "pagRedireccion.xhtml?faces-redirect=true";
-        }
-    }
-    
-    public String cerrarSesion() {
-        objUsuario = null;
-        return "index.xhtml?faces-redirect=true";
-    }
     
     public String getNombre() {
         return nombre;
@@ -73,6 +57,29 @@ public class UsuarioSesion implements Serializable {
     
     public void setObjUsuario(Usuario objUsuario) {
         this.objUsuario = objUsuario;
+    }
+    
+    
+    public String VerificarUsuario() {
+        objUsuario = objArchivos.VerificaUsuario(nombre, contrasena);
+        if (objUsuario == null) // No encontro el usuario
+        {
+            return "";
+        } else // Si encontro el usuario
+        {
+            lstPermiso = objArchivos.VerificarPermiso(objUsuario.getRol());
+            return "pagRedireccion.xhtml?faces-redirect=true";
+        }
+    }
+    
+    public String cerrarSesion() {
+        objUsuario = null;
+        return "index.xhtml?faces-redirect=true";
+    }
+    
+    public void validarCamposText(){
+    
+    
     }
     
 }

@@ -1,98 +1,110 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-    <h:head>
-        <title>Inicio de sesión</title>
-        <!-- Required meta tags -->
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-        <link href="Template/assets/css/index.css" rel="stylesheet"></link>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"/>
-        <link href="https://fonts.googleapis.com/css?family=Exo" rel="stylesheet"></link>
-    </h:head>
-    <h:body>
-        <div class="col-md-8 offset-md-2" style="margin-top:105px;">
-            <div class="card mb-3">
-                <h4 class="display-4" style="text-align:center; margin:34px 25px 30px 25px;">Registrarse</h4>
-                <div class="card-body">
-                    <h:form>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputName">Nombres</label>
-                                <h:inputText class="form-control" id="inputName" html5:placeholder="Nombres"/>
+<html  lang="#{localeBean.language}" 
+       xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+       xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view locale="#{localeBean.locale}">
+        <h:head>
+            <title>Inicio de sesión</title>
+            <!-- Required meta tags -->
+            <meta charset="utf-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+            <link href="Template/assets/css/index.css" rel="stylesheet"></link>
+            <link href="Template/assets/css/site.css" rel="stylesheet" type="text/css"/>
+            <script src="Template/assets/js/registroUsuarioValidForm.js" type="text/javascript"></script>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"/>
+            <link href="https://fonts.googleapis.com/css?family=Exo" rel="stylesheet"></link>
+        </h:head>
+        <h:body>
+            <!-- Menú horizontal con logo -->
+            <div class="container">
+                <div class="row">
+                    <img src="img/logo_cafe.png" style="padding-top: 16px;margin: auto;display: block; height: 103px; width: 200px;"></img>
+                </div>
+                <h:form>
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link"><h:commandLink action="${navegacionRequest.moverPagIndex()}" value="#{msg.linkInicio}" ></h:commandLink></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"><h:commandLink value="#{msg.linkProducto}"></h:commandLink></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"><h:commandLink value="#{msg.linkServicio}"></h:commandLink></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"><h:commandLink value="#{msg.linkNosotros}"></h:commandLink></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"><h:commandLink value="#{msg.linkContacto}"></h:commandLink></a>
+                        </li>
+                    </ul>
+                </h:form>
+            </div>
+
+            <div class="col-md-8 offset-md-2" style="margin-top:105px;">
+                <div class="card mb-3">
+                    <h4 class="display-4" style="text-align:center; margin:34px 25px 30px 25px;"><h:outputText class="modal-title" id="exampleModalLabel" value="#{msg.titRegistrarse}"></h:outputText></h4>
+                    <div class="card-body">
+                        <h:form>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputName"><h:outputText value="#{msg.lblNombre}"></h:outputText></label>
+                                    <h:inputText class="form-control" id="inputName" html5:placeholder="#{msg.plcHoldNombre}"/>
+                                    <small id="nameError"></small>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputApellido"><h:outputText value="#{msg.lblApellido}"></h:outputText></label>
+                                    <h:inputText class="form-control" id="inputApellido" html5:placeholder="#{msg.plcHoldApellido}"/>
+                                    <small id="apellidoError"></small>
+                                </div>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputApellido">Apellidos</label>
-                                <h:inputText class="form-control" id="inputApellido" html5:placeholder="Apellidos"/>
+                            <div class="form-group">
+                                <label for="inputEmail"><h:outputText value="#{msg.lblCorreo}"></h:outputText></label>
+                                <h:inputText class="form-control" id="inputEmail" html5:placeholder="#{msg.plcHoldCorreo}"/>
+                                <small id="emailError"></small>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputEmail4">Correo electrónico</label>
-                            <h:inputText class="form-control" id="inputEmail4" html5:placeholder="Correo electrónico"/>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputPassword">Contraseña</label>
-                                <h:inputSecret class="form-control" id="inputPassword" html5:placeholder="Contraseña"/>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword"><h:outputText value="#{msg.lblContrasena}"></h:outputText></label>
+                                    <h:inputSecret class="form-control" id="inputPassword" html5:placeholder="#{msg.plcHoldContrasena}"/>
+                                    <small id="passError"></small>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword4"><h:outputText value="#{msg.lblConfContrasena}"></h:outputText></label>
+                                    <h:inputSecret class="form-control" id="inputPassword4" html5:placeholder="#{msg.plcHoldConfContrasena}"/>
+                                    <small id="pass2Error"></small>
+                                </div>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputPassword4">Confirmar contraseña</label>
-                                <h:inputSecret class="form-control" id="inputPassword4" html5:placeholder="Confirmar contraseña"/>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputCity"><h:outputText value="#{msg.lblCiudad}"></h:outputText></label>
+                                    <h:inputText class="form-control" id="inputCity" html5:placeholder="#{msg.plcHoldCiudad}"/>
+                                    <small id="cityError"></small>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputTelefono"><h:outputText value="#{msg.lblTelefono}"></h:outputText></label>
+                                    <h:inputText class="form-control" id="inputTelefono" html5:placeholder="#{msg.plcHoldTelefono}"/>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputCity">Ciudad</label>
-                                <h:inputText class="form-control" id="inputCity" html5:placeholder="Ciudad"/>
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
+                                <label class="form-check-label" for="exampleCheck1"><h:outputText value="#{msg.lblPoliticas}"></h:outputText></label>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputTelefono">Teléfono</label>
-                                <h:inputText class="form-control" id="inputTelefono" html5:placeholder="Teléfono"/>
-                            </div>
-                        </div>
-                        <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
-                            <label class="form-check-label" for="exampleCheck1">Acepto políticas y privacidad</label>
-                        </div>
-                        <h:commandButton value="Enviar" class="btn btn-primary"></h:commandButton>
-                    </h:form>  
+                            <h:commandButton value="#{msg.btnEnviar}" class="btn btn-primary" onclick="validarFormulario()"></h:commandButton>
+                        </h:form>  
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Prueba lista -->
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">Nombre del permiso</th>
-                    <th scope="col">Tipo de permiso</th>
-
-                </tr>
-            </thead> 
-            <tbody>
-                <c:forEach var="permiso" items="#{usuarioSesion.lstPermiso}">
-                    <tr>
-                        <th>#{permiso.id}</th>
-                        <td>#{permiso.permiso}</td>
-
-                    </tr>
-
-                </c:forEach>
-            </tbody>
-        </table>
-
-
-
-
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-    </h:body>
-
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        </h:body>
+    </f:view>
 </html>
 

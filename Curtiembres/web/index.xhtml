@@ -31,13 +31,14 @@
             </ul>
 
             <div class="container-fluid">
+
                 <!-- Modal para iniciar sesión -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <h:form id="form1">
                                 <div class="modal-header">
-                                    <h:outputText class="modal-title" id="exampleModalLabel" value="#{msg.titIniciarSesion}"></h:outputText>
+                                    <h4 class="display-4"><h:outputText class="modal-title" id="exampleModalLabel" value="#{msg.titIniciarSesion}"></h:outputText></h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -46,17 +47,18 @@
                                     <div class="form-group">
                                         <h:outputLabel for="exampleInputEmail1" value="#{msg.lblEmail}"></h:outputLabel> 
                                         <h:inputText value="#{usuarioSesion.nombre}" required="true" class="form-control" id="exampleInputEmail1" requiredMessage="Ingrese un correo"  html5:placeholder="#{msg.inpTxtEmail}" />
-                                        <small id="emailHelp" class="form-text text-muted"><h:message for="form1:exampleInputEmail1"></h:message> </small>
+                                        <small id="emailHelp" class="form-text text-muted" style="color:#BB6A26 !important;"><h:message for="form1:exampleInputEmail1"></h:message></small>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="exampleInputPassword1" value="#{msg.lblPassword}"></h:outputLabel>
                                         <h:inputSecret value="#{usuarioSesion.contrasena}" required="true" class="form-control" id="exampleInputPassword1" requiredMessage="Ingrese una clave" html5:placeholder="#{msg.inpTxtPass}"/>
+                                        <small id="emailHelp" class="form-text text-muted" style="color:#BB6A26 !important;"><h:message for="form1:exampleInputPassword1"></h:message></small>
                                     </div>
                                     <h:commandLink style="font-size:12px;" value="#{msg.linkOlvidar}"></h:commandLink>
                                 </div>
                                 <div class="modal-footer">
-                                    <h:commandButton value="#{msg.btnCancelar}" class="btn btn-secondary"></h:commandButton>
                                     <h:commandButton action="#{usuarioSesion.VerificarUsuario()}" value="#{msg.btnEnviar}" class="btn btn-primary"></h:commandButton>
+                                    <h:commandButton value="#{msg.btnCancelar}" class="btn btn-secondary"></h:commandButton>
                                 </div>
                             </h:form>
                         </div>
@@ -69,8 +71,8 @@
                     <img src="img/ImgPrincipal.PNG" class="card-img"  alt="..."/>
                 </div>
 
+                <!-- Segundo Nav, barra de navegación horizontal  -->
                 <div class="container" style="padding-top: 5px">
-                    <!-- Segundo Nav, barra de navegación horizontal  -->
                     <h:form>
                         <ul class="nav justify-content-center" style="padding: 15px; background-color: #FFF5B9; border-top: 3px solid; border-color: #BB6A26;">
                             <li class="nav-item dropdown">
@@ -141,6 +143,7 @@
                         </div>
                     </div>
                 </h:form>
+
                 <!-- Contácto -->
                 <h:form>
                     <h3  style="text-align:center; margin:64px 25px 30px 25px;"><h:outputText class="display-4" value="#{msg.txtDescubrir}"></h:outputText></h3>
@@ -160,7 +163,6 @@
                             <h:commandButton value="#{msg.btnEnviar}" class="btn btn-primary"></h:commandButton>
                         </div>
                     </div>
-
                 </h:form>
 
                 <!-- Carousel de imágenes -->
