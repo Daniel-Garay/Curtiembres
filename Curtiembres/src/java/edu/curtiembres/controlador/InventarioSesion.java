@@ -158,7 +158,7 @@ public class InventarioSesion implements Serializable {
 
     public void nuevo() throws SQLException {
         setVisible(true);
-        asignarValoresModal(0,0,"0");
+        asignarValoresModal(0,0,"1");
         PrimeFaces.current().executeScript("AbrirModal('')");
         consultarProdOutInv();
        
