@@ -1,4 +1,4 @@
-package Conexiones;
+package edu.curtiembres.conexionsql;
 
 import edu.curtiembres.modelo.Inventario;
 import edu.curtiembres.modelo.ProductoOutInventario;
@@ -10,7 +10,7 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Procedimientos {
+public class InventarioDAL {
 
     RespuestaSP objRespuestaSp;
 

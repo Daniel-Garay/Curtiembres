@@ -1,4 +1,4 @@
-package Conexiones;
+package edu.curtiembres.conexionsql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

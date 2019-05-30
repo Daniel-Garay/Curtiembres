@@ -33,7 +33,7 @@
                                         <div class="col-md-12 mb-3">
                                             <label for="tdl">Código:</label>
                                             <h:selectOneMenu disabled="#{!inventarioSesion.visible}"  id="tdl" styleClass="form-control" value="#{inventarioSesion.objInventario.codigoProducto}">
-                                                <f:selectItem itemValue="#{null}" noSelectionOption="true" itemLabel="Seleccione una opción"/>
+                                                <f:selectItem itemValue="#{0}" noSelectionOption="true" itemLabel="Seleccione una opción"/>
                                                 <f:selectItems value="#{inventarioSesion.lstProdOutInv}" var="item" itemLabel="#{item.descripcion}" itemValue="#{item.codigo}"></f:selectItems>
                                             </h:selectOneMenu>
                                         </div>
@@ -45,7 +45,7 @@
                                         <div class="col-md-12 mb-3">
                                             <label for="tdl">Activo</label>
                                             <h:selectOneMenu  id="td2" styleClass="form-control" value="#{inventarioSesion.activo}" >
-                                                <f:selectItem itemValue="#{null}" noSelectionOption="true" itemLabel="Seleccione una opción"/>
+                                                <f:selectItem itemValue="#{0}" noSelectionOption="true" itemLabel="Seleccione una opción"/>
                                                 <f:selectItem itemValue="1" itemLabel="Si"></f:selectItem>
                                                 <f:selectItem itemValue="2" itemLabel="No"></f:selectItem>
                                             </h:selectOneMenu>   
@@ -93,7 +93,7 @@
                                         <td>#{inv.descripcion}</td>
                                         <td>#{inv.cantidadDisponible}</td>
                                         <td>#{inv.activo}</td>
-                                        <td><h:commandLink actionListener="#{inventarioSesion.Editar(inv.codigoProducto,inv.descripcion)}">
+                                        <td><h:commandLink actionListener="#{inventarioSesion.Editar(inv)}">
                                                 <img src="../img/edit.png" alt=""/> 
                                             </h:commandLink>
                                         </td>

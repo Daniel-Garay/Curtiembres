@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package edu.curtiembres.controlador;
 
-import Conexiones.Procedimientos;
+import edu.curtiembres.conexionsql.InventarioDAL;
 import edu.curtiembres.modelo.Inventario;
 import edu.curtiembres.modelo.ProductoOutInventario;
 import edu.curtiembres.modelo.RespuestaSP;
@@ -31,7 +27,7 @@ public class InventarioSesion implements Serializable {
 
     private List<Inventario> lstInvetario;
     private List<ProductoOutInventario> lstProdOutInv;
-    Procedimientos objProcedimiento = new Procedimientos();
+    InventarioDAL objProcedimiento = new InventarioDAL();
     RespuestaSP objResp = new RespuestaSP();
     private Inventario objInventario = new Inventario();
     private String activo;
@@ -124,16 +120,22 @@ public class InventarioSesion implements Serializable {
         }
         mensajesUsuario();
     }
+    
+    public void asignarValoresModal(int codProducto, int cantDisponible, String activo){
+     this.objInventario.setCodigoProducto(codProducto);
+     this.objInventario.setCantidadDisponible(cantDisponible);
+     this.setActivo(activo);
+    }
 
-    public void Editar(int codigoProducto, String descripcion) throws SQLException {
+    public void Editar(Inventario inv) throws SQLException {
         ProductoOutInventario objProdOut = new ProductoOutInventario();
-        objProdOut.setCodigo(codigoProducto);
-        objProdOut.setDescripcion(descripcion);
+        objProdOut.setCodigo(inv.getCodigoProducto());
+        objProdOut.setDescripcion(inv.getDescripcion());
+        asignarValoresModal(inv.getCodigoProducto(),inv.getCantidadDisponible(), inv.isActivo()?"1":"2");
+        
         lstProdOutInv = new ArrayList<>();
         lstProdOutInv.add(objProdOut);
         
-         //consultarProdOutInv();
-        this.objInventario.setCodigoProducto(codigoProducto);
         setVisible(false);
         PrimeFaces.current().executeScript("AbrirModal('')");
     }
@@ -156,8 +158,10 @@ public class InventarioSesion implements Serializable {
 
     public void nuevo() throws SQLException {
         setVisible(true);
+        asignarValoresModal(0,0,"0");
         PrimeFaces.current().executeScript("AbrirModal('')");
         consultarProdOutInv();
+       
     }
 
 }
