@@ -2,34 +2,119 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <h:form>
-            <h:commandButton action="#{inventarioRequest.Consultar()}" value="Enviar"></h:commandButton>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Código</th>
-                        <th scope="col">Descripción</th>
-                        <th scope="col">Cantidad disponible</th>
-                        <th scope="col">Activo</th>
-                    </tr>
-                </thead> 
-                <tbody>
-                    <c:forEach var="inv" items="#{inventarioRequest.lstInvetario}">
-                        <tr>
-                            <th>#{inv.codigoProducto}</th>
-                            <td>#{inv.descripcion}</td>
-                            <td>#{inv.cantidadDisponible}</td>
-                            <td>#{inv.activo}</td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-        </h:form>
+        <ui:composition template="./../Template/template.xhtml">
+            <ui:define name="content">
+                <div class="container">
+                    <h:form>
+                        <h:commandButton class="btn btn-primary" action="#{inventarioSesion.nuevo()}" value="Nuevo">
+                        </h:commandButton>
+                    </h:form>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <h:form>
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <div class="col-md-12 mb-3">
+                                            <label for="tdl">Código:</label>
+                                            <h:selectOneMenu disabled="#{!inventarioSesion.visible}"  id="tdl" styleClass="form-control" value="#{inventarioSesion.objInventario.codigoProducto}">
+                                                <f:selectItem itemValue="#{null}" noSelectionOption="true" itemLabel="Seleccione una opción"/>
+                                                <f:selectItems value="#{inventarioSesion.lstProdOutInv}" var="item" itemLabel="#{item.descripcion}" itemValue="#{item.codigo}"></f:selectItems>
+                                            </h:selectOneMenu>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="inputEmail4">Cantidad</label>
+                                            <h:inputText value="#{inventarioSesion.objInventario.cantidadDisponible}" class="form-control" id="txtCantidad" html5:placeholder="Cantidad"></h:inputText>
+                                        </div>
+
+                                        <div class="col-md-12 mb-3">
+                                            <label for="tdl">Activo</label>
+                                            <h:selectOneMenu  id="td2" styleClass="form-control" value="#{inventarioSesion.activo}" >
+                                                <f:selectItem itemValue="#{null}" noSelectionOption="true" itemLabel="Seleccione una opción"/>
+                                                <f:selectItem itemValue="1" itemLabel="Si"></f:selectItem>
+                                                <f:selectItem itemValue="2" itemLabel="No"></f:selectItem>
+                                            </h:selectOneMenu>   
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <c:choose>
+                                            <c:when test="${inventarioSesion.visible != true}">
+                                                <h:commandButton action="#{inventarioSesion.actualizar()}" class="btn btn-primary" value="Actualizar"></h:commandButton>
+
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </c:when>
+                                            <c:when test="${inventarioSesion.visible == true}">
+                                                <h:commandButton action="#{inventarioSesion.crear()}" class="btn btn-primary" value="Crear"></h:commandButton>
+
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </c:when>
+                                        </c:choose>
+
+
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <h:form>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Código</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Cantidad disponible</th>
+                                    <th scope="col">Activo</th>
+                                    <th scope="col">Editar</th>
+                                    <th scope="col">Eliminar</th>
+                                </tr>
+                            </thead> 
+                            <tbody>
+                                <c:forEach var="inv"  items="#{inventarioSesion.lstInvetario}">
+                                    <tr>
+                                        <th>#{inv.codigoProducto}</th>
+                                        <td>#{inv.descripcion}</td>
+                                        <td>#{inv.cantidadDisponible}</td>
+                                        <td>#{inv.activo}</td>
+                                        <td><h:commandLink actionListener="#{inventarioSesion.Editar(inv.codigoProducto,inv.descripcion)}">
+                                                <img src="../img/edit.png" alt=""/> 
+                                            </h:commandLink>
+                                        </td>
+                                        <td><h:commandLink actionListener="#{inventarioSesion.eliminar(inv.codigoProducto)}">
+                                                <img src="../img/tash.png" alt=""/>
+                                            </h:commandLink>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </h:form>
+                </div>
+                <script type="text/javascript">
+                    function AbrirModal()
+                    {
+                        $('#exampleModal').modal('show');
+                    }
+                </script>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 

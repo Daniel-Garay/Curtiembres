@@ -22,7 +22,7 @@ public class Inventario {
         return activo;
     }
 
-    public void setActivodescripion(boolean activo) {
+    public void setActivo(boolean activo) {
         this.activo = activo;
     }
 
