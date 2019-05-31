@@ -9,7 +9,61 @@
     <h:body>
         <ui:composition template="./../Template/template.xhtml">
             <ui:define name="content">
-               
+                <div class="container">
+                    <h:form>
+                        <h:commandButton class="btn btn-primary" action="#{unidadMedidaSession.nuevo()}" value="Nuevo">
+                        </h:commandButton>
+                    </h:form>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <h:form>
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group col-md-12">
+                                            <label for="txtCodigo">Código:</label>
+                                            <h:inputText value="#{unidadMedidaSession.objUnidadMedida.codigo}" class="form-control" id="txtCodigo" html5:placeholder="Código"></h:inputText>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="txtDescripción">Descripción:</label>
+                                            <h:inputText value="#{unidadMedidaSession.objUnidadMedida.descripcion}" class="form-control" id="txtDescripción" html5:placeholder="Descripción"></h:inputText>
+                                        </div>
+                                        <div class="col-md-12 mb-3">
+                                            <label for="tdl">Disponible</label>
+                                            <h:selectOneRadio value="#{unidadMedidaSession.disponible}">
+                                                <f:selectItem itemValue="1" itemLabel="Si" />
+                                                <f:selectItem itemValue="2" itemLabel="No" />
+                                            </h:selectOneRadio>
+                                        </div>
+                                        <h:commandButton action="#{unidadMedidaSession.crear()}" class="btn btn-primary" value="Crear"></h:commandButton>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <c:choose>
+                                            <c:when test="">
+                                                <h:commandButton class="btn btn-primary" value="Actualizar"></h:commandButton>
+
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </c:when>
+                                            <c:when test="">
+                                                <h:commandButton action="#{unidadMedidaSession.crear()}" class="btn btn-primary" value="Crear"></h:commandButton>
+
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </c:when>
+                                        </c:choose>
+
+
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="container">
                     <h:form>
                         <table class="table table-hover">
@@ -28,11 +82,11 @@
                                         <th>#{unidMed.codigo}</th>
                                         <td>#{unidMed.descripcion}</td>
                                         <td>#{unidMed.disponible}</td>
-                                         <td><h:commandLink>
+                                        <td><h:commandLink>
                                                 <img src="../img/edit.png" alt=""/> 
                                             </h:commandLink>
                                         </td>
-                                        <td><h:commandLink>
+                                        <td><h:commandLink actionListener="#{unidadMedidaSession.eliminar(unidMed.codigo)}">
                                                 <img src="../img/tash.png" alt=""/>
                                             </h:commandLink>
                                         </td>

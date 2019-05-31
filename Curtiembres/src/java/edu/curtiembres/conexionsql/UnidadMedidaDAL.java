@@ -5,6 +5,7 @@ import edu.curtiembres.modelo.UnidadMedida;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,30 @@ public class UnidadMedidaDAL {
          }
         
         return lstUnidadMedida;
+    }
+    
+    public RespuestaSP eliminarUnidadMedida(String unidadMedida) throws SQLException {
+    CallableStatement entrada = Conexion.getConexion().prepareCall("{call EliminarUnidadMedida(?,?,?)}");
+    entrada.setString(1,unidadMedida);
+    entrada.registerOutParameter(2, Types.VARCHAR);
+    entrada.registerOutParameter(3, Types.BOOLEAN);
+    entrada.execute();
+    
+    respuestaSP = new RespuestaSP(entrada.getString(2), entrada.getString(3).equals("1")?true:false);
+    return respuestaSP;
+    }
+    
+    public RespuestaSP crearUnidadMedida(UnidadMedida objUnidMedida)throws SQLException {
+     CallableStatement entrada = Conexion.getConexion().prepareCall("{call CrearUnidadMedida(?,?,?,?,?)}");
+     entrada.setString(1, objUnidMedida.getCodigo());
+     entrada.setString(2, objUnidMedida.getDescripcion());
+     entrada.setBoolean(3, objUnidMedida.isDisponible());
+     entrada.registerOutParameter(4, Types.VARCHAR);
+     entrada.registerOutParameter(5, Types.BOOLEAN);
+     entrada.execute();
+     
+     respuestaSP = new RespuestaSP(entrada.getString(4),entrada.getString(5).equals("1")?true:false);
+     return respuestaSP;
     }
     
 }
