@@ -51,4 +51,17 @@ public class UnidadMedidaDAL {
      return respuestaSP;
     }
     
+    public RespuestaSP actualizarUnidadMedida(UnidadMedida objunidadMedida)throws SQLException{
+     CallableStatement entrada = Conexion.getConexion().prepareCall("{call ActualizarUnidadMedida(?,?,?,?,?)}");
+     entrada.setString(1, objunidadMedida.getCodigo());
+     entrada.setString(2, objunidadMedida.getDescripcion());
+     entrada.setBoolean(3, objunidadMedida.isDisponible());
+     entrada.registerOutParameter(4, Types.VARCHAR);
+     entrada.registerOutParameter(5, Types.BOOLEAN);
+     entrada.execute();
+     
+     respuestaSP = new RespuestaSP(entrada.getString(4),entrada.getString(5).equals("1")?true:false);
+     return respuestaSP;
+    }
+    
 }

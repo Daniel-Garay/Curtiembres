@@ -50,7 +50,7 @@
                 <div class="card mb-3">
                     <h4 class="display-4" style="text-align:center; margin:34px 25px 30px 25px;"><h:outputText class="modal-title" id="exampleModalLabel" value="#{msg.titRegistrarse}"></h:outputText></h4>
                     <div class="card-body">
-                        <h:form>
+                        <h:form id="form1">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputName"><h:outputText value="#{msg.lblNombre}"></h:outputText></label>
@@ -95,7 +95,7 @@
                                 <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
                                 <label class="form-check-label" for="exampleCheck1"><h:outputText value="#{msg.lblPoliticas}"></h:outputText></label>
                             </div>
-                            <h:commandButton value="#{msg.btnEnviar}" class="btn btn-primary" onclick="validarFormulario()"></h:commandButton>
+                            <h:commandButton value="#{msg.btnEnviar}" type="button" class="btn btn-primary" onclick="validarFormulario()"></h:commandButton>
                         </h:form>  
                     </div>
                 </div>

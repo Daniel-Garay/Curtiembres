@@ -1,12 +1,12 @@
 function validarFormulario() {
+    debugger;
+    var name = $("#form1\\:inputName").val();
+    var apellido = $("#form1\\:inputApellido").val();
+    var email = $("#form1\\:inputEmail").val();
+    var password = $("#form1\\:inputPassword").val();
+    var password4 = $("#form1\\:inputPassword4").val();
+    var city = $("#form1\\:inputCity").val();
 
-    var name = $("#inputName").val();
-    var apellido = $("#inputApellido").val();
-    var email = $("#inputEmail").val();
-    var password = $("#inputPassword").val();
-    var password4 = $("#inputPassword4").val();
-    var city = $("#inputCity").val();
-    
     if (name === ""){
         $("#nameError").html("Ingresa tus nombres" + " " + '<i class="fas fa-times"></i>');
     } else {

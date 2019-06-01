@@ -40,23 +40,18 @@
                                                 <f:selectItem itemValue="2" itemLabel="No" />
                                             </h:selectOneRadio>
                                         </div>
-                                        <h:commandButton action="#{unidadMedidaSession.crear()}" class="btn btn-primary" value="Crear"></h:commandButton>
                                     </div>
                                     <div class="modal-footer">
                                         <c:choose>
-                                            <c:when test="">
-                                                <h:commandButton class="btn btn-primary" value="Actualizar"></h:commandButton>
-
+                                            <c:when test="#{unidadMedidaSession.isEdit == true}">
+                                                <h:commandButton action="#{unidadMedidaSession.actualizar()}" class="btn btn-primary" value="Actualizar"></h:commandButton>
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             </c:when>
-                                            <c:when test="">
+                                            <c:when test="#{unidadMedidaSession.isEdit != true}">
                                                 <h:commandButton action="#{unidadMedidaSession.crear()}" class="btn btn-primary" value="Crear"></h:commandButton>
-
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             </c:when>
                                         </c:choose>
-
-
                                     </div>
                                 </h:form>
                             </div>
@@ -82,7 +77,7 @@
                                         <th>#{unidMed.codigo}</th>
                                         <td>#{unidMed.descripcion}</td>
                                         <td>#{unidMed.disponible}</td>
-                                        <td><h:commandLink>
+                                        <td><h:commandLink actionListener="#{unidadMedidaSession.editar(unidMed)}">
                                                 <img src="../img/edit.png" alt=""/> 
                                             </h:commandLink>
                                         </td>

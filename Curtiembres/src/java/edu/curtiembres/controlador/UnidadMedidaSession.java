@@ -24,6 +24,7 @@ public class UnidadMedidaSession implements Serializable {
     private RespuestaSP objRespuestaSP = new RespuestaSP();
     private UnidadMedida objUnidadMedida = new UnidadMedida();
     private String disponible;
+    private boolean isEdit = false;
 
     @PostConstruct
     public void init() {
@@ -35,6 +36,7 @@ public class UnidadMedidaSession implements Serializable {
         }
     }
 
+    
     public List<UnidadMedida> getLstUnidadMedida() {
         return lstUnidadMedida;
     }
@@ -74,6 +76,28 @@ public class UnidadMedidaSession implements Serializable {
     public void setDisponible(String disponible) {
         this.disponible = disponible;
     }
+    
+    public boolean isIsEdit() {
+        return isEdit;
+    }
+
+    public void setIsEdit(boolean isEdit) {
+        this.isEdit = isEdit;
+    }
+    
+
+    public void actualizar() throws SQLException {
+        if (objUnidadMedida == null) {
+            objRespuestaSP.setExito(false);
+            objRespuestaSP.setMensaje("Complete todos los campos");
+
+        } else {
+            this.objUnidadMedida.setDisponible(this.disponible.equals("1") ? true : false);
+            objRespuestaSP = objUnidadMedidaDAL.actualizarUnidadMedida(objUnidadMedida);
+            consultar();
+        }
+        mensajesUsuario();
+    }
 
     public void consultar() throws SQLException {
         lstUnidadMedida = new ArrayList<>();
@@ -91,11 +115,29 @@ public class UnidadMedidaSession implements Serializable {
         }
         mensajesUsuario();
     }
+    
+    public void editar(UnidadMedida objUnidMed){
+        setIsEdit(true);
+        if(objUnidMed != null){
+            objUnidadMedida.setCodigo(objUnidMed.getCodigo());
+            objUnidadMedida.setDescripcion(objUnidMed.getDescripcion());
+            this.setDisponible(objUnidMed.isDisponible()?"1":"2");
+        PrimeFaces.current().executeScript("AbrirModal('')");
+        }
+    
+    }
 
     public void eliminar(String codUnidadMedida) throws SQLException {
         objRespuestaSP = objUnidadMedidaDAL.eliminarUnidadMedida(codUnidadMedida);
         mensajesUsuario();
         consultar();
+    }
+    
+    public void limpiar(){
+    objUnidadMedida.setCodigo("");
+    objUnidadMedida.setDescripcion("");
+    this.setDisponible("1");
+    
     }
 
     public void mensajesUsuario() {
@@ -108,7 +150,10 @@ public class UnidadMedidaSession implements Serializable {
     }
 
     public void nuevo() throws SQLException {
+        setIsEdit(false);
         PrimeFaces.current().executeScript("AbrirModal('')");
+        limpiar();
     }
+
 
 }
