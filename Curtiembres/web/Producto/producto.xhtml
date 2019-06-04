@@ -1,12 +1,47 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <body>
         <ui:composition template="./../Template/template.xhtml">
             <ui:define name="content">
-                content
+                <div class="container">
+                    <h:form>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Código</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Activo</th>
+                                    <th scope="col">Código Unidad Medida</th>
+                                    <th scope="col">Editar</th>
+                                    <th scope="col">Eliminar</th>
+                                </tr>
+                            </thead> 
+                            <tbody>
+                                <c:forEach var="prod"  items="#{productoSession.lstProducto}">
+                                    <tr>
+                                        <th>#{prod.codigo}</th>
+                                        <td>#{prod.descripcion}</td>
+                                        <td>#{prod.activo}</td>
+                                        <td>#{prod.codUnidadMedida}</td>
+                                        <td><h:commandLink>
+                                                <img src="../img/edit.png" alt=""/> 
+                                            </h:commandLink>
+                                        </td>
+                                        <td><h:commandLink>
+                                                <img src="../img/tash.png" alt=""/>
+                                            </h:commandLink>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </h:form>
+                </div>
+                </ui:define>
         </ui:composition>
     </body>
 </html>
