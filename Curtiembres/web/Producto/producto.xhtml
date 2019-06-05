@@ -19,19 +19,19 @@
                             <div class="modal-content">
                                 <h:form>
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Producto</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group col-md-12">
-                                            <label for="txtCodigo">Nombre:</label>
-                                            <h:inputText value="" class="form-control" id="txtCodigo" html5:placeholder="Nombre"></h:inputText>
+                                            <label for="txtCodigo">Descripción:</label>
+                                            <h:inputText value="#{productoSession.objProducto.descripcion}" class="form-control" id="txtCodigo" html5:placeholder="Descripción"></h:inputText>
                                         </div>
                                         <div class="col-md-12 mb-3">
                                             <label for="tdl">Activo:</label>
-                                            <h:selectOneRadio value="">
+                                            <h:selectOneRadio value="#{productoSession.activo}">
                                                 <f:selectItem itemValue="1" itemLabel="Si" />
                                                 <f:selectItem itemValue="2" itemLabel="No" />
                                             </h:selectOneRadio>
@@ -40,14 +40,16 @@
                                             <label for="txtDescripción">Código unidad de medida:</label>
                                             <h:selectOneMenu  id="tdl" styleClass="form-control" value="#{productoSession.objProducto.codUnidadMedida}">
                                                 <f:selectItem itemValue="#{0}" itemLabel="Seleccione una opción"></f:selectItem>
-                                                <f:selectItems value="#{productoSession.lstUnidadMedida}" var="item" itemLabel="#{item.descripcion}" itemValue="#{item.codigo}"></f:selectItems>
+                                                <f:selectItems value="#{productoSession.lstUnidadMedida}" var="item" itemLabel="#{item.codigo}" itemValue="#{item.codigo}"></f:selectItems>
                                             </h:selectOneMenu>   
                                         </div>
+                                        <h:commandButton action="#{productoSession.actualizar()}" class="btn btn-primary" value="Actualizar"></h:commandButton>
+                                        <h:commandButton action="#{productoSession.crear()}" class="btn btn-primary" value="Crear"></h:commandButton>
                                     </div>
                                     <div class="modal-footer">
                                         <c:choose>
                                             <c:when test="">
-                                                <h:commandButton  class="btn btn-primary" value="Actualizar"></h:commandButton>
+                                                <h:commandButton action="#{productoSession.actualizar()}" class="btn btn-primary" value="Actualizar"></h:commandButton>
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             </c:when>
                                             <c:when test="">

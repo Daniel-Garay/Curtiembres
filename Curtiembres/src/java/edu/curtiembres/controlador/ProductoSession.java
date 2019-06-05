@@ -108,12 +108,12 @@ public class ProductoSession implements Serializable {
     }
 
     public void eliminar(int codigo) throws SQLException {
+       objrtaSP = objProductoDAL.eliminarProducto(codigo);
         if (objrtaSP.isExito()) {
-            objrtaSP = objProductoDAL.eliminarProducto(codigo);
             mensajesUsuario();
             consultar();
         } else {
-            PrimeFaces.current().executeScript("estadoFK('Foreign key')");
+            PrimeFaces.current().executeScript("estadoFK()");
         }
     }
 
@@ -127,15 +127,23 @@ public class ProductoSession implements Serializable {
     }
 
     public void crear() throws SQLException {
-        if (objProducto == null) {
+        if (!validarProducto()) {
             objrtaSP.setExito(false);
-            objrtaSP.setMensaje("Complete los campos del formulario");
+            objrtaSP.setMensaje("Complete todos los campos del formulario");
         } else {
             this.objProducto.setActivo(this.activo.equals("1") ? true : false);
             objrtaSP = objProductoDAL.crearProducto(objProducto);
             consultar();
         }
         mensajesUsuario();
+    }
+
+    public boolean validarProducto() {
+        boolean valido = true;
+        if (objProducto.getDescripcion().equals("") || objProducto.getCodUnidadMedida().equals("0")) {
+            valido = false;
+        }
+        return valido;
     }
 
     public void nuevo() throws SQLException {

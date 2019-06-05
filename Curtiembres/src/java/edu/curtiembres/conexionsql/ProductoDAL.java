@@ -45,24 +45,10 @@ public class ProductoDAL {
         entrada.setString(3, objProducto.getCodUnidadMedida());
         entrada.registerOutParameter(4, Types.VARCHAR);
         entrada.registerOutParameter(5, Types.BOOLEAN);
+        entrada.execute();
 
-        objRespuesta = new RespuestaSP(entrada.getString(4), entrada.getString(5).equals("1") ? true : false);
+        objRespuesta = new RespuestaSP(entrada.getString(4),entrada.getString(5).equals("1")?true:false);
         return objRespuesta;
     }
-
-    public RespuestaSP actualizarProducto(Producto objProducto) throws SQLException {
-        CallableStatement entrada = Conexion.getConexion().prepareCall("{call ActualizarProducto(?,?,?,?,?,?)}");
-        entrada.setInt(1,objProducto.getCodigo());
-        entrada.setString(2, objProducto.getDescripcion());
-        entrada.setBoolean(3, objProducto.isActivo());
-        entrada.setString(4, objProducto.getCodUnidadMedida());
-        entrada.registerOutParameter(5, Types.VARCHAR);
-        entrada.registerOutParameter(6, Types.BOOLEAN);
-
-        objRespuesta = new RespuestaSP(entrada.getString(5), entrada.getString(6).equals("1") ? true : false);
-        return objRespuesta;
-    }
-
-   
 
 }
