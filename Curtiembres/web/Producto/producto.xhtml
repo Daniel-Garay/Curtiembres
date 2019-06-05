@@ -2,11 +2,66 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <body>
         <ui:composition template="./../Template/template.xhtml">
             <ui:define name="content">
+                <div class="container">
+                    <h:form>
+                        <h:commandButton class="btn btn-primary" action="#{productoSession.nuevo()}" value="Nuevo">
+                        </h:commandButton>
+                    </h:form>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <h:form>
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group col-md-12">
+                                            <label for="txtCodigo">Nombre:</label>
+                                            <h:inputText value="" class="form-control" id="txtCodigo" html5:placeholder="Nombre"></h:inputText>
+                                        </div>
+                                        <div class="col-md-12 mb-3">
+                                            <label for="tdl">Activo:</label>
+                                            <h:selectOneRadio value="">
+                                                <f:selectItem itemValue="1" itemLabel="Si" />
+                                                <f:selectItem itemValue="2" itemLabel="No" />
+                                            </h:selectOneRadio>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="txtDescripción">Código unidad de medida:</label>
+                                            <h:selectOneMenu  id="tdl" styleClass="form-control" value="#{productoSession.objProducto.codUnidadMedida}">
+                                                <f:selectItem itemValue="#{0}" itemLabel="Seleccione una opción"></f:selectItem>
+                                                <f:selectItems value="#{productoSession.lstUnidadMedida}" var="item" itemLabel="#{item.descripcion}" itemValue="#{item.codigo}"></f:selectItems>
+                                            </h:selectOneMenu>   
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <c:choose>
+                                            <c:when test="">
+                                                <h:commandButton  class="btn btn-primary" value="Actualizar"></h:commandButton>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </c:when>
+                                            <c:when test="">
+                                                <h:commandButton action="#{productoSession.crear()}" class="btn btn-primary" value="Crear"></h:commandButton>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </c:when>
+                                        </c:choose>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="container">
                     <h:form>
                         <table class="table table-hover">
@@ -21,7 +76,7 @@
                                 </tr>
                             </thead> 
                             <tbody>
-                                <c:forEach var="prod"  items="#{productoSession.lstProducto}">
+                                <c:forEach var="prod" items="#{productoSession.lstProducto}">
                                     <tr>
                                         <th>#{prod.codigo}</th>
                                         <td>#{prod.descripcion}</td>
@@ -31,7 +86,7 @@
                                                 <img src="../img/edit.png" alt=""/> 
                                             </h:commandLink>
                                         </td>
-                                        <td><h:commandLink>
+                                        <td><h:commandLink actionListener="#{productoSession.eliminar(prod.codigo)}">
                                                 <img src="../img/tash.png" alt=""/>
                                             </h:commandLink>
                                         </td>
@@ -41,7 +96,13 @@
                         </table>
                     </h:form>
                 </div>
-                </ui:define>
+                <script type="text/javascript">
+                    function AbrirModal()
+                    {
+                        $('#exampleModal').modal('show');
+                    }
+                </script>
+            </ui:define>
         </ui:composition>
     </body>
 </html>

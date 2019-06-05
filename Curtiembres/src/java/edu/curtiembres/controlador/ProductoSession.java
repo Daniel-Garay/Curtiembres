@@ -1,7 +1,10 @@
 package edu.curtiembres.controlador;
 
 import edu.curtiembres.conexionsql.ProductoDAL;
+import edu.curtiembres.conexionsql.UnidadMedidaDAL;
 import edu.curtiembres.modelo.Producto;
+import edu.curtiembres.modelo.RespuestaSP;
+import edu.curtiembres.modelo.UnidadMedida;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -10,6 +13,7 @@ import java.util.ArrayList;
 import static java.util.Collections.list;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import org.primefaces.PrimeFaces;
 
 @Named(value = "productoSession")
 @SessionScoped
@@ -20,6 +24,11 @@ public class ProductoSession implements Serializable {
 
     private List<Producto> lstProducto;
     private ProductoDAL objProductoDAL = new ProductoDAL();
+    private UnidadMedidaDAL objUnidadMedidaDAL = new UnidadMedidaDAL();
+    private RespuestaSP objrtaSP = new RespuestaSP();
+    private Producto objProducto = new Producto();
+    private List<UnidadMedida> lstUnidadMedida;
+    private String activo;
 
     @PostConstruct
     public void init() {
@@ -47,9 +56,91 @@ public class ProductoSession implements Serializable {
         this.objProductoDAL = objProductoDAL;
     }
 
-    public void consultar() throws Exception {
+    public Producto getObjProducto() {
+        return objProducto;
+    }
+
+    public void setObjProducto(Producto objProducto) {
+        this.objProducto = objProducto;
+    }
+
+    public List<UnidadMedida> getLstUnidadMedida() {
+        return lstUnidadMedida;
+    }
+
+    public void setLstUnidadMedida(List<UnidadMedida> lstUnidadMedida) {
+        this.lstUnidadMedida = lstUnidadMedida;
+    }
+
+    public UnidadMedidaDAL getObjUnidadMedidaDAL() {
+        return objUnidadMedidaDAL;
+    }
+
+    public void setObjUnidadMedidaDAL(UnidadMedidaDAL objUnidadMedidaDAL) {
+        this.objUnidadMedidaDAL = objUnidadMedidaDAL;
+    }
+
+    public RespuestaSP getObjrtaSP() {
+        return objrtaSP;
+    }
+
+    public void setObjrtaSP(RespuestaSP objrtaSP) {
+        this.objrtaSP = objrtaSP;
+    }
+
+    public String getActivo() {
+        return activo;
+    }
+
+    public void setActivo(String activo) {
+        this.activo = activo;
+    }
+
+    public void consultar() throws SQLException {
         lstProducto = new ArrayList<>();
         setLstProducto(objProductoDAL.consultarProducto());
+    }
+
+    public void consultarUnidadMedida() throws SQLException {
+        lstUnidadMedida = new ArrayList<>();
+        setLstUnidadMedida(objUnidadMedidaDAL.consultarUnidadMedida());
+
+    }
+
+    public void eliminar(int codigo) throws SQLException {
+        if (objrtaSP.isExito()) {
+            objrtaSP = objProductoDAL.eliminarProducto(codigo);
+            mensajesUsuario();
+            consultar();
+        } else {
+            PrimeFaces.current().executeScript("estadoFK('Foreign key')");
+        }
+    }
+
+    public void mensajesUsuario() {
+
+        if (objrtaSP.isExito()) {
+            PrimeFaces.current().executeScript("estadoOk('" + objrtaSP.getMensaje() + "')");
+        } else {
+            PrimeFaces.current().executeScript("estadoBad('" + objrtaSP.getMensaje() + "')");
+        }
+    }
+
+    public void crear() throws SQLException {
+        if (objProducto == null) {
+            objrtaSP.setExito(false);
+            objrtaSP.setMensaje("Complete los campos del formulario");
+        } else {
+            this.objProducto.setActivo(this.activo.equals("1") ? true : false);
+            objrtaSP = objProductoDAL.crearProducto(objProducto);
+            consultar();
+        }
+        mensajesUsuario();
+    }
+
+    public void nuevo() throws SQLException {
+        consultarUnidadMedida();
+        PrimeFaces.current().executeScript("AbrirModal('')");
     }
 
 }

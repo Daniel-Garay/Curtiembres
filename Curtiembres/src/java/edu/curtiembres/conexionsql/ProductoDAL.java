@@ -2,6 +2,7 @@ package edu.curtiembres.conexionsql;
 
 import edu.curtiembres.modelo.Producto;
 import edu.curtiembres.modelo.RespuestaSP;
+import edu.curtiembres.modelo.UnidadMedida;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +14,7 @@ public class ProductoDAL {
 
     RespuestaSP objRespuesta;
 
-    public List<Producto> consultarProducto() throws Exception {
+    public List<Producto> consultarProducto() throws SQLException {
         CallableStatement entrada = Conexion.getConexion().prepareCall("{call ConsultarProducto()}");
 
         List<Producto> lstProducto = new ArrayList<>();
@@ -25,15 +26,43 @@ public class ProductoDAL {
         }
         return lstProducto;
     }
-    
-    public RespuestaSP eliminarProducto(int codigo) throws Exception {
-    CallableStatement entrada = Conexion.getConexion().prepareCall("{call EliminarProducto(?,?,?)}");
-    entrada.setInt(1, codigo);
-    entrada.registerOutParameter(2, Types.VARCHAR);
-    entrada.registerOutParameter(3, Types.BOOLEAN);
-    entrada.execute();
-    
-    return objRespuesta;
+
+    public RespuestaSP eliminarProducto(int codigo) throws SQLException {
+        CallableStatement entrada = Conexion.getConexion().prepareCall("{call EliminarProducto(?,?,?)}");
+        entrada.setInt(1, codigo);
+        entrada.registerOutParameter(2, Types.VARCHAR);
+        entrada.registerOutParameter(3, Types.BOOLEAN);
+        entrada.execute();
+
+        objRespuesta = new RespuestaSP(entrada.getString(2), entrada.getString(3).equals("1") ? true : false);
+        return objRespuesta;
     }
+
+    public RespuestaSP crearProducto(Producto objProducto) throws SQLException {
+        CallableStatement entrada = Conexion.getConexion().prepareCall("{call CrearProducto(?,?,?,?,?)}");
+        entrada.setString(1, objProducto.getDescripcion());
+        entrada.setBoolean(2, objProducto.isActivo());
+        entrada.setString(3, objProducto.getCodUnidadMedida());
+        entrada.registerOutParameter(4, Types.VARCHAR);
+        entrada.registerOutParameter(5, Types.BOOLEAN);
+
+        objRespuesta = new RespuestaSP(entrada.getString(4), entrada.getString(5).equals("1") ? true : false);
+        return objRespuesta;
+    }
+
+    public RespuestaSP actualizarProducto(Producto objProducto) throws SQLException {
+        CallableStatement entrada = Conexion.getConexion().prepareCall("{call ActualizarProducto(?,?,?,?,?,?)}");
+        entrada.setInt(1,objProducto.getCodigo());
+        entrada.setString(2, objProducto.getDescripcion());
+        entrada.setBoolean(3, objProducto.isActivo());
+        entrada.setString(4, objProducto.getCodUnidadMedida());
+        entrada.registerOutParameter(5, Types.VARCHAR);
+        entrada.registerOutParameter(6, Types.BOOLEAN);
+
+        objRespuesta = new RespuestaSP(entrada.getString(5), entrada.getString(6).equals("1") ? true : false);
+        return objRespuesta;
+    }
+
+   
 
 }
