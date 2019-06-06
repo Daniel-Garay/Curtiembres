@@ -60,7 +60,8 @@ public class ProductoDAL {
         entrada.registerOutParameter(5, Types.VARCHAR);
         entrada.registerOutParameter(6, Types.BOOLEAN);
         entrada.execute();
-        objRespuesta = new RespuestaSP(entrada.getString(4), entrada.getString(5).equals("1") ? true : false);
+        
+        objRespuesta = new RespuestaSP(entrada.getString(5), entrada.getString(6).equals("1") ? true : false);
         return objRespuesta;
     }
 

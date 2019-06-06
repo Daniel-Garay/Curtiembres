@@ -84,7 +84,7 @@
                                         <td>#{prod.descripcion}</td>
                                         <td>#{prod.activo}</td>
                                         <td>#{prod.codUnidadMedida}</td>
-                                        <td><h:commandLink>
+                                        <td><h:commandLink actionListener="#{productoSession.editar(prod)}">
                                                 <img src="../img/edit.png" alt=""/> 
                                             </h:commandLink>
                                         </td>

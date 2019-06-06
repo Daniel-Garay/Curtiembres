@@ -107,7 +107,7 @@ public class ProductoSession implements Serializable {
     }
 
     public void eliminar(int codigo) throws SQLException {
-       objrtaSP = objProductoDAL.eliminarProducto(codigo);
+        objrtaSP = objProductoDAL.eliminarProducto(codigo);
         if (objrtaSP.isExito()) {
             mensajesUsuario();
             consultar();
@@ -148,6 +148,29 @@ public class ProductoSession implements Serializable {
     public void nuevo() throws SQLException {
         consultarUnidadMedida();
         PrimeFaces.current().executeScript("AbrirModal('')");
+    }
+
+    public void editar(Producto objProd) throws SQLException{
+        if (objProducto != null) {
+            objProducto.setCodigo(objProd.getCodigo());
+            objProducto.setDescripcion(objProd.getDescripcion());
+            this.setActivo(objProd.isActivo() ? "1" : "2");
+            objProducto.setCodUnidadMedida(objProd.getCodUnidadMedida());
+            consultarUnidadMedida();
+            PrimeFaces.current().executeScript("AbrirModal('')");
+        }
+    }
+
+    public void actualizar() throws SQLException {
+        if (objProducto == null) {
+            objrtaSP.setExito(false);
+            objrtaSP.setMensaje("Complete todos los campos del formulario");
+        } else {
+            this.objProducto.setActivo(this.activo.equals("1") ? true : false);
+            objrtaSP = objProductoDAL.actualizarProducto(objProducto);
+            consultar();
+        }
+        mensajesUsuario();
     }
 
 }
