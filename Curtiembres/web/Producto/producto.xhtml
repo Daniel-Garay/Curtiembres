@@ -43,16 +43,14 @@
                                                 <f:selectItems value="#{productoSession.lstUnidadMedida}" var="item" itemLabel="#{item.codigo}" itemValue="#{item.codigo}"></f:selectItems>
                                             </h:selectOneMenu>   
                                         </div>
-                                        <h:commandButton action="#{productoSession.actualizar()}" class="btn btn-primary" value="Actualizar"></h:commandButton>
-                                        <h:commandButton action="#{productoSession.crear()}" class="btn btn-primary" value="Crear"></h:commandButton>
                                     </div>
                                     <div class="modal-footer">
                                         <c:choose>
-                                            <c:when test="">
+                                            <c:when test="#{productoSession.isNew != true}">
                                                 <h:commandButton action="#{productoSession.actualizar()}" class="btn btn-primary" value="Actualizar"></h:commandButton>
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             </c:when>
-                                            <c:when test="">
+                                            <c:when test="#{productoSession.isNew == true}">
                                                 <h:commandButton action="#{productoSession.crear()}" class="btn btn-primary" value="Crear"></h:commandButton>
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             </c:when>
