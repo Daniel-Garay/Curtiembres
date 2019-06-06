@@ -29,6 +29,8 @@ public class ProductoSession implements Serializable {
     private Producto objProducto = new Producto();
     private List<UnidadMedida> lstUnidadMedida;
     private String activo;
+    private boolean isNew = true;
+    
 
     @PostConstruct
     public void init() {
@@ -38,6 +40,14 @@ public class ProductoSession implements Serializable {
             } catch (Exception e) {
             }
         }
+    }
+    
+    public boolean isIsNew() {
+        return isNew;
+    }
+
+    public void setIsNew(boolean isNew) {
+        this.isNew = isNew;
     }
 
     public List<Producto> getLstProducto() {
@@ -146,11 +156,14 @@ public class ProductoSession implements Serializable {
     }
 
     public void nuevo() throws SQLException {
+        setIsNew(true);
+        limpiarFormulario();
         consultarUnidadMedida();
         PrimeFaces.current().executeScript("AbrirModal('')");
     }
 
     public void editar(Producto objProd) throws SQLException{
+        setIsNew(false);
         if (objProducto != null) {
             objProducto.setCodigo(objProd.getCodigo());
             objProducto.setDescripcion(objProd.getDescripcion());
@@ -172,5 +185,15 @@ public class ProductoSession implements Serializable {
         }
         mensajesUsuario();
     }
+    
+    public void limpiarFormulario (){
+    objProducto.setDescripcion("");
+    this.setActivo("1");
+    objProducto.setCodUnidadMedida("0");
+    }
+
+    
+    
+    
 
 }
