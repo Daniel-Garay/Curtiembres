@@ -30,7 +30,7 @@ public class ManejoArchivos {
                 lineaArreglo = linea.split(";");
 
                 if ((lineaArreglo[1].equals(nombre)) && (lineaArreglo[4].equals(contrasena))) {  // Existe el usuario
-                    usuarioEncontro = new Usuario(Integer.parseInt(lineaArreglo[0]), lineaArreglo[1], lineaArreglo[2], "", lineaArreglo[3], lineaArreglo[4], lineaArreglo[5], true);
+                   // usuarioEncontro = new Usuario(Integer.parseInt(lineaArreglo[0]), lineaArreglo[1], lineaArreglo[2], "", lineaArreglo[3], lineaArreglo[4], lineaArreglo[5], true);
                 }
             }
             return usuarioEncontro;

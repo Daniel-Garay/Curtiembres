@@ -1,42 +1,61 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <ui:component>
         <!-- Nav de Inicio de sesión y registro -->
-        <ul class="nav justify-content-end" style="padding:10px;">
-            <li class="nav-item">
-                <a class="nav-link" href="registroUsuario.xhtml?faces-redirect = true">Registrarse</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="modal" data-target="#exampleModal"  href="#">Iniciar sesión</a>
-            </li>
-        </ul>
-
+        <c:choose>
+            <c:when test="${usuarioSesion.objUsuarioLogueado.lsAuthenticated == true}">
+                <ul class="nav justify-content-end" style="padding: 10px;">
+                    <h:form>
+                        <h:commandLink class="nav-link" value="${usuarioSesion.objUsuarioLogueado.nombre}" > 
+                            <h:graphicImage value="${usuarioSesion.objUsuarioLogueado.imgUsuario}" style="width:15%; margin-left: 13px;"></h:graphicImage>
+                        </h:commandLink>
+                        <h:commandLink action="#{usuarioSesion.cerrarSesion()}" value="Cerrar sesión"></h:commandLink>
+                    </h:form>
+                </ul>
+            </c:when>
+            <c:when test="${usuarioSesion.objUsuarioLogueado.lsAuthenticated != true}">
+                <ul class="nav justify-content-end" style="padding: 10px;">
+                    <h:form>
+                        <li class="nav-item" style="padding: 7px;">
+                            <h:commandLink action="#{navegacionRequest.moverPagRegistroUsuario()}" value="Registrar"></h:commandLink>
+                        </li>
+                    </h:form>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="modal" data-target="#exampleModal" href="#">Iniciar sesión</a>
+                    </li>
+                </ul>
+            </c:when>
+        </c:choose>
         <!-- Menú horizontal con logo -->
-        <div class="container">
-            <div class="row">
-                <img src="../img/logo_cafe.png" style="padding-top: 16px;margin: auto;display: block; height: 103px; width: 200px;"></img>
+
+            <div class="container">
+                <div class="row">
+                    <img src="./../img/logo_cafe.png" style="padding-top: 16px;margin: auto;display: block; height: 103px; width: 200px;"></img>
+                </div>
+                <ul class="nav justify-content-center">
+                    <h:form>
+                        <li class="nav-item">
+
+                            <a class="nav-link"><h:commandLink action="#{navegacionSession.moverGrillaProductos()}" value="Grilla productos" ></h:commandLink></a>
+
+                    </li>
+                    </h:form>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contáctanos</a>
+                    </li>
+                </ul>
             </div>
-            <ul class="nav justify-content-center">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.xhtml">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Productos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Servicios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Nosotros</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contáctanos</a>
-                </li>
-            </ul>
-        </div>
+       
+
 
     </ui:component>
 </html>

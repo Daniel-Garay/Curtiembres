@@ -2,85 +2,34 @@ package edu.curtiembres.modelo;
 
 public class Usuario {
 
-    private int id;
-    private String Nombre;
-    private String Apellido;
-    private String Correo;
-    private String Rol;
-    private String Contrasena;
-    private String UrlImagen;
-    private boolean lsAuthenticated;
+     private int codigo;
+     private String tipoDocumento;
+     private int documento;
+     private String nombre;
+     private String apellido;
+     private String email;
+     private String contrasena;
+     private Boolean activo;
+     private String imgUsuario;
+     private boolean lsAuthenticated;
 
     public Usuario() {
     }
 
-    public Usuario(int id, String Nombre, String Apellido, String Correo, String Rol, String Contrasena, String UrlImagen, boolean lsAuthenticated) {
-        this.id = id;
-        this.Nombre = Nombre;
-        this.Apellido = Apellido;
-        this.Correo = Correo;
-        this.Rol = Rol;
-        this.Contrasena = Contrasena;
-        this.UrlImagen = UrlImagen;
+    public Usuario(int codigo, String tipoDocumento, int documento, String nombre, String apellido, String email, String contrasena, Boolean activo, String imgUsuario, boolean lsAuthenticated) {
+        this.codigo = codigo;
+        this.tipoDocumento = tipoDocumento;
+        this.documento = documento;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.contrasena = contrasena;
+        this.activo = activo;
+        this.imgUsuario = imgUsuario;
         this.lsAuthenticated = lsAuthenticated;
     }
 
     
-    public String getContrasena() {
-        return Contrasena;
-    }
-
-    public void setContrasena(String Contrasena) {
-        this.Contrasena = Contrasena;
-    }
-
-    public String getNombre() {
-        return Nombre;
-    }
-
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
-    }
-
-    public String getApellido() {
-        return Apellido;
-    }
-
-    public void setApellido(String Apellido) {
-        this.Apellido = Apellido;
-    }
-
-    public String getCorreo() {
-        return Correo;
-    }
-
-    public void setCorreo(String Correo) {
-        this.Correo = Correo;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getRol() {
-        return Rol;
-    }
-
-    public void setRol(String Rol) {
-        this.Rol = Rol;
-    }
-
-    public String getUrlImagen() {
-        return UrlImagen;
-    }
-
-    public void setUrlImagen(String UrlImagen) {
-        this.UrlImagen = UrlImagen;
-    }
 
     public boolean isLsAuthenticated() {
         return lsAuthenticated;
@@ -88,6 +37,78 @@ public class Usuario {
 
     public void setLsAuthenticated(boolean lsAuthenticated) {
         this.lsAuthenticated = lsAuthenticated;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getTipoDocumento() {
+        return tipoDocumento;
+    }
+
+    public void setTipoDocumento(String tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
+    }
+
+    public int getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(int documento) {
+        this.documento = documento;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
+
+    public String getImgUsuario() {
+        return imgUsuario;
+    }
+
+    public void setImgUsuario(String imgUsuario) {
+        this.imgUsuario = imgUsuario;
     }
 
     

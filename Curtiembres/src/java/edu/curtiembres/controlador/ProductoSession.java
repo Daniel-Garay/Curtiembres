@@ -104,7 +104,6 @@ public class ProductoSession implements Serializable {
     public void consultarUnidadMedida() throws SQLException {
         lstUnidadMedida = new ArrayList<>();
         setLstUnidadMedida(objUnidadMedidaDAL.consultarUnidadMedida());
-
     }
 
     public void eliminar(int codigo) throws SQLException {
