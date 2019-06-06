@@ -29,8 +29,6 @@ public class Usuario {
         this.lsAuthenticated = lsAuthenticated;
     }
 
-    
-
     public boolean isLsAuthenticated() {
         return lsAuthenticated;
     }

@@ -31,31 +31,32 @@
                 </ul>
             </c:when>
         </c:choose>
+
         <!-- Menú horizontal con logo -->
-
-            <div class="container">
-                <div class="row">
-                    <img src="./../img/logo_cafe.png" style="padding-top: 16px;margin: auto;display: block; height: 103px; width: 200px;"></img>
-                </div>
-                <ul class="nav justify-content-center">
-                    <h:form>
-                        <li class="nav-item">
-
-                            <a class="nav-link"><h:commandLink action="#{navegacionSession.moverGrillaProductos()}" value="Grilla productos" ></h:commandLink></a>
-
-                    </li>
-                    </h:form>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Nosotros</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contáctanos</a>
-                    </li>
-                </ul>
+        <div class="container">
+            <div class="row">
+                <img src="./../img/logo_cafe.png" style="padding-top: 16px;margin: auto;display: block; height: 103px; width: 200px;"></img>
             </div>
-       
-
-
+            <ul class="nav justify-content-center">
+                <c:forEach var="permiso" items="#{usuarioSesion.lstPermisoLogin}">
+                    <c:if test="${permiso.codigo == 1}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#{navegacionSession.moverGrillaProductos()}">Producto</a>
+                        </li>
+                    </c:if>
+                    <c:if test="${permiso.codigo == 2}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#{navegacionSession.moverGrillaInventario()}">Inventario</a>
+                        </li>
+                    </c:if>
+                    <c:if test="${permiso.codigo == 3}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#{navegacionSession.moverGrillaUnidadMedida()}">Unidad de medida</a>
+                        </li>
+                    </c:if>
+                </c:forEach>
+            </ul>
+            
+        </div>
     </ui:component>
 </html>

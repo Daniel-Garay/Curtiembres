@@ -1,16 +1,21 @@
 package edu.curtiembres.conexionsql;
 
+import edu.curtiembres.modelo.Permiso;
 import edu.curtiembres.modelo.RespuestaSP;
 import edu.curtiembres.modelo.UnidadMedida;
 import edu.curtiembres.modelo.Usuario;
 import java.sql.CallableStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsuarioDAL {
 
     RespuestaSP respuestaSP;
     Usuario objUsuarioLogin;
+ 
 
     public RespuestaSP verificarUsuario(String email, String pass) throws SQLException {
         CallableStatement entrada = Conexion.getConexion().prepareCall("{call ValidarUsuario(?,?,?,?)}");
@@ -50,4 +55,18 @@ public class UsuarioDAL {
         return objUsuarioLogin;
     }
 
+    public List<Permiso> permisoPorUsuario(String email, String pass) throws SQLException {
+        CallableStatement entrada = Conexion.getConexion().prepareCall("{call PermisosPorUsuario(?,?)}");
+        entrada.setString(1, email);
+        entrada.setString(2, pass);
+
+        List<Permiso> lstPermisoLogin = new ArrayList<>();
+        ResultSet rs = entrada.executeQuery();
+        
+        while (rs.next()) {
+            Permiso objPermisoLogin = new Permiso(Integer.parseInt(rs.getString("codigoPermiso")), rs.getString("nombre"), rs.getString("descripcion"));
+            lstPermisoLogin.add(objPermisoLogin);
+        }
+        return lstPermisoLogin;
+    }
 }

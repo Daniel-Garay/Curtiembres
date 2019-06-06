@@ -22,7 +22,7 @@ public class NavegacionSession implements Serializable {
      */
     public NavegacionSession() {
     }
-    
+
     private String redireccionTrue = "?faces-redirect=true";
     //String ruta=FacesContext.getCurrentInstance().getExternalContext().getRealPath("");
 
@@ -37,13 +37,17 @@ public class NavegacionSession implements Serializable {
     public String moverPagRegistroUsuario() {
         return "registroUsuario.xhtml" + redireccionTrue;
     }
-    
-    public String moverGrillaProductos(){
-    return "/Producto/producto.xhtml" + redireccionTrue;
+
+    public String moverGrillaProductos() {
+        return "/Producto/producto.xhtml" + redireccionTrue;
     }
-    
-    public String moverGrillaInventario(){
-    return "/Inventario/inventario.xhtml" + redireccionTrue;
+
+    public String moverGrillaInventario() {
+        return "/Inventario/inventario.xhtml" + redireccionTrue;
     }
-    
+
+    public String moverGrillaUnidadMedida() {
+        return "/UnidadMedida/unidadMedida.xhtml" + redireccionTrue;
+    }
+
 }

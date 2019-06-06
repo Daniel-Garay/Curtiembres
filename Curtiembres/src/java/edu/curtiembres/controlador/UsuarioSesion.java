@@ -1,8 +1,7 @@
 package edu.curtiembres.controlador;
 
 import edu.curtiembres.conexionsql.UsuarioDAL;
-import edu.curtiembres.modelo.ManejoArchivos;
-import edu.curtiembres.modelo.Permisos;
+import edu.curtiembres.modelo.Permiso;
 import edu.curtiembres.modelo.RespuestaSP;
 import edu.curtiembres.modelo.Usuario;
 import javax.inject.Named;
@@ -10,20 +9,15 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.context.FacesContext;
-import javax.inject.Inject;
 
 @Named(value = "usuarioSesion")
 @SessionScoped
 public class UsuarioSesion implements Serializable {
 
     private Usuario objUsuarioLogueado;
-    ManejoArchivos objArchivos = new ManejoArchivos();
-
+    private List<Permiso> lstPermisoLogin = new ArrayList<>();
     private String correo = "";
     private String contrasena = "";
-    private List<Permisos> lstPermiso = new ArrayList<>();
     private UsuarioDAL objUsuarioDAL = new UsuarioDAL();
     RespuestaSP objRespuestaSP = new RespuestaSP();
 
@@ -55,15 +49,7 @@ public class UsuarioSesion implements Serializable {
         this.contrasena = contrasena;
     }
 
-    public List<Permisos> getLstPermiso() {
-        return lstPermiso;
-    }
-
-    public void setLstPermiso(List<Permisos> lstPermiso) {
-        this.lstPermiso = lstPermiso;
-    }
-
-       public Usuario getObjUsuarioLogueado() {
+    public Usuario getObjUsuarioLogueado() {
         return objUsuarioLogueado;
     }
 
@@ -71,37 +57,38 @@ public class UsuarioSesion implements Serializable {
         this.objUsuarioLogueado = objUsuarioLogueado;
     }
 
+    public List<Permiso> getLstPermisoLogin() {
+        return lstPermisoLogin;
+    }
 
+    public void setLstPermisoLogin(List<Permiso> lstPermisoLogin) {
+        this.lstPermisoLogin = lstPermisoLogin;
+    }    
+    
     public String VerificarUsuario() {
-        /*objUsuario = objArchivos.VerificaUsuario(nombre, contrasena);*/
         try {
             objRespuestaSP = objUsuarioDAL.verificarUsuario(correo, contrasena);
             if (objRespuestaSP.isExito()) {
-                  setObjUsuarioLogueado(objUsuarioDAL.informacionUsuario(correo, contrasena));
-               return "Usuario/pagRedireccion.xhtml?faces-redirect=true";
-            } else 
-            {
-                //lstPermiso = objArchivos.VerificarPermiso(objUsuario.getRol());
+                setObjUsuarioLogueado(objUsuarioDAL.informacionUsuario(correo, contrasena));
+                lstPermisoLogin = objUsuarioDAL.permisoPorUsuario(correo, contrasena);
+                if (lstPermisoLogin != null) {
+                     return "Usuario/pagRedireccion.xhtml?faces-redirect=true";
+                } else {
+                    return "";
+                }
+            } else {
                 return "";
             }
-
         } catch (Exception e) {
             return "";
         }
-
     }
-    
-    
 
     public String cerrarSesion() {
-               
         this.objUsuarioLogueado = null;
         return "/index.xhtml?faces-redirect=true";
     }
-
-    public void validarCamposText() {
-
-    }
+    
 
 
 }
